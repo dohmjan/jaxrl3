@@ -1,12 +1,10 @@
 from typing import Optional
 
-import gym
-from gym.wrappers.pixel_observation import PixelObservationWrapper
+import gymnasium as gym
+from gymnasium.wrappers import ClipAction, FlattenObservation, PixelObservationWrapper, RescaleAction
 
-from jaxrl2.wrappers import frame_stack
 from jaxrl2.wrappers.frame_stack import FrameStack
 from jaxrl2.wrappers.repeat_action import RepeatAction
-from jaxrl2.wrappers.universal_seed import UniversalSeed
 
 
 def wrap_pixels(
@@ -16,27 +14,20 @@ def wrap_pixels(
     num_stack: Optional[int] = 3,
     camera_id: int = 0,
 ) -> gym.Env:
+    if "dm_control" in env.spec.id:
+        env.spec.max_episode_steps = 1000
+        # dm_control envs have dict obs space
+        env = FlattenObservation(env)
+
     if action_repeat > 1:
         env = RepeatAction(env, action_repeat)
 
-    env = UniversalSeed(env)
-    env = gym.wrappers.RescaleAction(env, -1, 1)
+    env = RescaleAction(env, -1, 1)
 
-    env = PixelObservationWrapper(
-        env,
-        pixels_only=True,
-        render_kwargs={
-            "pixels": {
-                "height": image_size,
-                "width": image_size,
-                "camera_id": camera_id,
-            }
-        },
-    )
+    env = PixelObservationWrapper(env, pixels_only=True)
 
-    if frame_stack is not None:
-        env = FrameStack(env, num_stack=num_stack)
+    env = FrameStack(env, num_stack=num_stack)
 
-    env = gym.wrappers.ClipAction(env)
+    env = ClipAction(env)
 
     return env

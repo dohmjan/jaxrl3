@@ -1,6 +1,6 @@
 import os
 
-import gym
+import gymnasium as gym
 import imageio
 import numpy as np
 
@@ -52,12 +52,12 @@ class VideoRecorder(gym.Wrapper):
 
         self.frames.append(frame)
 
-        observation, reward, done, info = self.env.step(action)
+        observation, reward, terminated, truncated, info = self.env.step(action)
 
-        if done:
+        if terminated or truncated:
             save_file = os.path.join(self.save_folder, f"{self.current_episode}.mp4")
             imageio.mimsave(save_file, self.frames, fps=self.fps)
             self.frames = []
             self.current_episode += 1
 
-        return observation, reward, done, info
+        return observation, reward, terminated, truncated, info

@@ -1,8 +1,8 @@
 import collections
 
-import gym
+import gymnasium as gym
 import numpy as np
-from gym.spaces import Box
+from gymnasium.spaces import Box
 
 
 class FrameStack(gym.Wrapper):
@@ -22,19 +22,19 @@ class FrameStack(gym.Wrapper):
 
         self._frames = collections.deque(maxlen=num_stack)
 
-    def reset(self):
-        obs = self.env.reset()
+    def reset(self, seed=None, options=None):
+        obs, info = self.env.reset(seed=seed, options=options)
         for i in range(self._num_stack):
             self._frames.append(obs["pixels"])
         obs["pixels"] = self.frames
-        return obs
+        return obs, info
 
     @property
     def frames(self):
         return np.stack(self._frames, axis=-1)
 
     def step(self, action):
-        obs, reward, done, info = self.env.step(action)
+        obs, reward, terminated, truncated, info = self.env.step(action)
         self._frames.append(obs["pixels"])
         obs["pixels"] = self.frames
-        return obs, reward, done, info
+        return obs, reward, terminated, truncated, info

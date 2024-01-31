@@ -4,7 +4,7 @@ import copy
 import functools
 from typing import Dict, Optional, Sequence, Tuple
 
-import gym
+import gymnasium as gym
 import jax
 import numpy as np
 import optax

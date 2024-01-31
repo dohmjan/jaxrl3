@@ -2,7 +2,7 @@ from typing import Dict, Iterable, Optional, Tuple, Union
 
 import numpy as np
 from flax.core import frozen_dict
-from gym.utils import seeding
+from gymnasium.utils import seeding
 
 from jaxrl2.types import DataType
 

@@ -2,11 +2,11 @@ import collections
 import copy
 from typing import Iterable, Optional
 
-import gym
+import gymnasium as gym
 import jax
 import numpy as np
 from flax.core import frozen_dict
-from gym.spaces import Box
+from gymnasium.spaces import Box
 
 from jaxrl2.data.dataset import DatasetDict, _sample
 from jaxrl2.data.replay_buffer import ReplayBuffer
