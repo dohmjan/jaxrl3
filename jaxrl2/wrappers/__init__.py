@@ -1,4 +1,3 @@
-from jaxrl2.wrappers.dmc2gym import DMC2GYM
 from jaxrl2.wrappers.flatten_action_space import FlattenAction
 from jaxrl2.wrappers.frame_stack import FrameStack
 from jaxrl2.wrappers.gym import wrap_gym
