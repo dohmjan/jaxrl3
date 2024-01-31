@@ -100,7 +100,7 @@ def _update_jit(
     )
 
     rng, key = jax.random.split(rng)
-    new_actor, actor_info = update_actor(key, actor, critic, temp, batch)
+    new_actor, actor_info = update_actor(key, actor, new_critic, temp, batch)
     new_temp, alpha_info = update_temperature(
         temp, actor_info["entropy"], target_entropy
     )
