@@ -9,10 +9,10 @@ import wandb
 from absl import app, flags
 from ml_collections import config_flags
 
-from jaxrl2.agents import DrQLearner
-from jaxrl2.data import MemoryEfficientReplayBuffer
-from jaxrl2.evaluation import evaluate
-from jaxrl2.wrappers import wrap_pixels, set_universal_seed
+from jaxrl3.agents import DrQLearner
+from jaxrl3.data import MemoryEfficientReplayBuffer
+from jaxrl3.evaluation import evaluate
+from jaxrl3.wrappers import wrap_pixels, set_universal_seed
 
 FLAGS = flags.FLAGS
 
@@ -56,7 +56,7 @@ PLANET_ACTION_REPEAT = {
 
 
 def main(_):
-    wandb.init(project="jaxrl2_online_pixels")
+    wandb.init(project="jaxrl3_online_pixels")
     wandb.config.update(FLAGS)
 
     if FLAGS.action_repeat is not None:

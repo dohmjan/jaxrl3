@@ -2,8 +2,8 @@ import gym
 import numpy as np
 import pytest
 
-from jaxrl2.data import Dataset
-from jaxrl2.data.d4rl_dataset import D4RLDataset
+from jaxrl3.data import Dataset
+from jaxrl3.data.d4rl_dataset import D4RLDataset
 
 DATASET_LEN = 10
 DATASET_DICT = {

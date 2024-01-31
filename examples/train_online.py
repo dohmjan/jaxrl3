@@ -7,10 +7,10 @@ import wandb
 from absl import app, flags
 from ml_collections import config_flags
 
-from jaxrl2.agents import SACLearner
-from jaxrl2.data import ReplayBuffer
-from jaxrl2.evaluation import evaluate
-from jaxrl2.wrappers import wrap_gym, set_universal_seed
+from jaxrl3.agents import SACLearner
+from jaxrl3.data import ReplayBuffer
+from jaxrl3.evaluation import evaluate
+from jaxrl3.wrappers import wrap_gym, set_universal_seed
 
 FLAGS = flags.FLAGS
 
@@ -37,7 +37,7 @@ config_flags.DEFINE_config_file(
 
 
 def main(_):
-    wandb.init(project="jaxrl2_online")
+    wandb.init(project="jaxrl3_online")
     wandb.config.update(FLAGS)
 
     def check_env_id(env_id):

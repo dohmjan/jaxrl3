@@ -20,13 +20,12 @@ install_requires = read_requirements_file("requirements.txt")
 test_requires = read_requirements_file("requirements_test.txt")
 
 setup(
-    name="jaxrl2",
+    name="jaxrl3",
     version="0.0.1",
     description=description,
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/ikostrikov/jaxrl",
-    author="Ilya Kostrikov",
+    url="https://github.com/dohmjan/jaxrl3",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",

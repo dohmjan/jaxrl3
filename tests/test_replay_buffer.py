@@ -1,9 +1,8 @@
 import gym
 import numpy as np
 
-import jaxrl2.extra_envs.dm_control_suite
-from jaxrl2.data import MemoryEfficientReplayBuffer, ReplayBuffer
-from jaxrl2.wrappers import wrap_pixels
+from jaxrl3.data import MemoryEfficientReplayBuffer, ReplayBuffer
+from jaxrl3.wrappers import wrap_pixels
 
 BATCH_SIZE = 3
 

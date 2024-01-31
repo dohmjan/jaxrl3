@@ -1,6 +1,6 @@
 import subprocess
 
-import jaxrl2.extra_envs.dm_control_suite
+import jaxrl3.extra_envs.dm_control_suite
 
 
 def test_online_dmc():
